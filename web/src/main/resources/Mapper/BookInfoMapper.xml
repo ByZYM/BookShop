@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.Dao.BookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.BookInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="publish" jdbcType="VARCHAR" property="publish" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, isbn, name, date, publish, author, info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.AllenZhang.Entity.BookInfo">
+    insert into book_info (id, isbn, name, 
+      date, publish, author, 
+      info)
+    values (#{id,jdbcType=INTEGER}, #{isbn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{publish,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.BookInfo">
+    insert into book_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isbn != null">
+        isbn,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="publish != null">
+        publish,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isbn != null">
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="publish != null">
+        #{publish,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.Entity.BookInfo">
+    update book_info
+    <set>
+      <if test="isbn != null">
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="publish != null">
+        publish = #{publish,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.Entity.BookInfo">
+    update book_info
+    set isbn = #{isbn,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE},
+      publish = #{publish,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
