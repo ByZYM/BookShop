@@ -23,6 +23,11 @@ public class UserAccount {
         return account;
     }
 
+    @Override
+    public String toString() {
+        return "UserAccount{" + "userId=" + userId + ", account='" + account + '\'' + ", password='" + password + '\'' + ", loginTime=" + loginTime + '}';
+    }
+
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
     }
