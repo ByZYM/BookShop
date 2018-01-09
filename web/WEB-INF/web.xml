@@ -49,6 +49,18 @@
     </filter-mapping>
     <!-- end-跨域请求 -->
 
+    <!-- 登录验证 -->
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.AllenZhang.Filter.LoginFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    <!-- end-登录验证 -->
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
