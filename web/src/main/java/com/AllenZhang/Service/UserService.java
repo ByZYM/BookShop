@@ -32,13 +32,13 @@ public interface UserService {
     boolean addUser(UserAccount userAccount);
 
     /**
-     * 更新用户账号
+     * 更新用户账号密码
      * -只能更新用户密码
      *
      * @param userAccount 用户账号
      * @return 是否更新成功
      */
-    boolean updateUserAccount(UserAccount userAccount);
+    boolean updateUserPassword(UserAccount userAccount);
 
     /**
      * 通过账号名称获取UserAccount
