@@ -1,82 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.AllenZhang.dao.GoodsInfoMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.GoodsInfo">
-    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
-    <result column="book_id" jdbcType="INTEGER" property="bookId" />
-    <result column="money" jdbcType="DECIMAL" property="money" />
-    <result column="num" jdbcType="INTEGER" property="num" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    goods_id, book_id, money, num
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from goods_info
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from goods_info
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.AllenZhang.entity.GoodsInfo">
-    insert into goods_info (goods_id, book_id, money, 
-      num)
-    values (#{goodsId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
-      #{num,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.entity.GoodsInfo">
-    insert into goods_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="goodsId != null">
-        goods_id,
-      </if>
-      <if test="bookId != null">
-        book_id,
-      </if>
-      <if test="money != null">
-        money,
-      </if>
-      <if test="num != null">
-        num,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="goodsId != null">
-        #{goodsId,jdbcType=INTEGER},
-      </if>
-      <if test="bookId != null">
-        #{bookId,jdbcType=INTEGER},
-      </if>
-      <if test="money != null">
-        #{money,jdbcType=DECIMAL},
-      </if>
-      <if test="num != null">
-        #{num,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.GoodsInfo">
-    update goods_info
-    <set>
-      <if test="bookId != null">
-        book_id = #{bookId,jdbcType=INTEGER},
-      </if>
-      <if test="money != null">
-        money = #{money,jdbcType=DECIMAL},
-      </if>
-      <if test="num != null">
-        num = #{num,jdbcType=INTEGER},
-      </if>
-    </set>
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.GoodsInfo">
-    update goods_info
-    set book_id = #{bookId,jdbcType=INTEGER},
-      money = #{money,jdbcType=DECIMAL},
-      num = #{num,jdbcType=INTEGER}
-    where goods_id = #{goodsId,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.AllenZhang.entity.GoodsInfo">
+        <id column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="book_id" jdbcType="INTEGER" property="book.id"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="num" jdbcType="INTEGER" property="num"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        goods_id, book_id, money, num
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_info
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllWithAllData" resultType="com.AllenZhang.entity.GoodsInfo">
+        SELECT
+            a.goods_id "goodId",
+            i.id       "book.id",
+            i.author   "book.author",
+            i.isbn   "book.isbn",
+            i.name "book.name",
+            i.date "book.date",
+            i.info "book.info",
+            i.publish "book.publish",
+            a.money    "money",
+            a.num      "num"
+        FROM goods_info a
+            INNER JOIN book_info i ON a.book_id = i.id;
+
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM goods_info
+        WHERE goods_id = #{goodsId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.AllenZhang.entity.GoodsInfo">
+        INSERT INTO goods_info (goods_id, book_id, money,
+                                num)
+        VALUES (#{goodsId,jdbcType=INTEGER}, #{book.id,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL},
+                #{num,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.AllenZhang.entity.GoodsInfo">
+        insert into goods_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="book != null">
+                book_id,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="book != null">
+                #{book.id,jdbcType=INTEGER},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.GoodsInfo">
+        update goods_info
+        <set>
+            <if test="book != null">
+                book_id = #{book.id,jdbcType=INTEGER},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DECIMAL},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+        </set>
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.GoodsInfo">
+        UPDATE goods_info
+        SET book_id = #{book.id,jdbcType=INTEGER},
+            money   = #{money,jdbcType=DECIMAL},
+            num     = #{num,jdbcType=INTEGER}
+        WHERE goods_id = #{goodsId,jdbcType=INTEGER}
+    </update>
 </mapper>

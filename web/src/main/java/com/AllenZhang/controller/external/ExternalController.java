@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -29,9 +30,10 @@ public class ExternalController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/login")
-    public MetaDto loginValidate(LoginViewDto loginViewDto, HttpSession session) {
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public @ResponseBody MetaDto loginValidate(@RequestBody LoginViewDto loginViewDto, HttpSession session) {
 
+        System.out.println(loginViewDto);
 
         UserAccount u = userService.checkUserLogin(loginViewDto.getAccount(),loginViewDto.getPassword());
         MetaDto metaDto = new MetaDto();
@@ -49,7 +51,7 @@ public class ExternalController {
         return metaDto;
     }
 
-    @RequestMapping("/signup")
+    @RequestMapping(value = "/signup",method = RequestMethod.POST)
     public @ResponseBody
     MetaDto addUser(@RequestBody SignViewDto signViewDto) {
 
