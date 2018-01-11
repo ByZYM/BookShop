@@ -51,16 +51,16 @@ public class ExternalController {
         MetaDto metaDto = new MetaDto();
         String account = signViewDto.getAccount();
         String password = signViewDto.getPassword();
-        String nickname = signViewDto.getUserNickName();
         UserAccount userAccount = new UserAccount(account, password);
-        UserInfo userInfo = null;
-        boolean flag = userService.addUser(userAccount);
-        if (flag) {
-            userInfo = new UserInfo(userAccount.getUserId(), nickname);
-            //调用service插入user_info
+
+        try{
+            /* 自动添加了UserAccount和UserInfo */
+            userService.addUser(userAccount);
+
             metaDto.setMessage("注册成功");
             metaDto.setStatus(Status.SUCCESS);
-        } else {
+
+        }catch(RuntimeException e){
             metaDto.setMessage("注册失败");
             metaDto.setStatus(Status.FAILED);
         }
