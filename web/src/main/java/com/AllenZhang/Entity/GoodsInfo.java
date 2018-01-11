@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class GoodsInfo {
     private Integer goodsId;
 
-    private Integer bookId;
+    private BookInfo book;
 
     private BigDecimal money;
 
@@ -19,12 +19,12 @@ public class GoodsInfo {
         this.goodsId = goodsId;
     }
 
-    public Integer getBookId() {
-        return bookId;
+    public BookInfo getBook() {
+        return book;
     }
 
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
+    public void setBook(BookInfo book) {
+        this.book = book;
     }
 
     public BigDecimal getMoney() {

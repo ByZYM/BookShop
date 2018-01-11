@@ -3,7 +3,7 @@
 <mapper namespace="com.AllenZhang.dao.GoodsInfoMapper">
   <resultMap id="BaseResultMap" type="com.AllenZhang.entity.GoodsInfo">
     <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
-    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="book_id" jdbcType="INTEGER" property="book" />
     <result column="money" jdbcType="DECIMAL" property="money" />
     <result column="num" jdbcType="INTEGER" property="num" />
   </resultMap>
@@ -21,10 +21,10 @@
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.AllenZhang.entity.GoodsInfo">
-    insert into goods_info (goods_id, book_id, money, 
-      num)
-    values (#{goodsId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
-      #{num,jdbcType=INTEGER})
+    insert into goods_info (goods_id, book_id, money,
+    num)
+    values (#{goodsId,jdbcType=INTEGER}, #{book.id,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL},
+    #{num,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.AllenZhang.entity.GoodsInfo">
     insert into goods_info
@@ -32,7 +32,7 @@
       <if test="goodsId != null">
         goods_id,
       </if>
-      <if test="bookId != null">
+      <if test="book != null">
         book_id,
       </if>
       <if test="money != null">
@@ -46,8 +46,8 @@
       <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
       </if>
-      <if test="bookId != null">
-        #{bookId,jdbcType=INTEGER},
+      <if test="book != null">
+        #{book.id,jdbcType=INTEGER},
       </if>
       <if test="money != null">
         #{money,jdbcType=DECIMAL},
@@ -60,8 +60,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.GoodsInfo">
     update goods_info
     <set>
-      <if test="bookId != null">
-        book_id = #{bookId,jdbcType=INTEGER},
+      <if test="book != null">
+        book_id = #{book,jdbcType=INTEGER},
       </if>
       <if test="money != null">
         money = #{money,jdbcType=DECIMAL},
@@ -74,7 +74,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.GoodsInfo">
     update goods_info
-    set book_id = #{bookId,jdbcType=INTEGER},
+    set book_id = #{book,jdbcType=INTEGER},
       money = #{money,jdbcType=DECIMAL},
       num = #{num,jdbcType=INTEGER}
     where goods_id = #{goodsId,jdbcType=INTEGER}

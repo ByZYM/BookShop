@@ -29,7 +29,7 @@ public interface UserService {
      * @param userAccount 用户账号
      * @return 是否创建成功
      */
-    boolean addUser(UserAccount userAccount);
+    void addUser(UserAccount userAccount);
 
     /**
      * 更新用户账号密码

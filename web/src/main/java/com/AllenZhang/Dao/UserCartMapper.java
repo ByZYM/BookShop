@@ -2,6 +2,8 @@ package com.AllenZhang.dao;
 
 import com.AllenZhang.entity.UserCart;
 
+import java.util.List;
+
 public interface UserCartMapper {
     int deleteByPrimaryKey(Integer cartId);
 
@@ -9,9 +11,11 @@ public interface UserCartMapper {
 
     int insertSelective(UserCart record);
 
-    UserCart selectByPrimaryKey(Integer cartId);
+    UserCart selectByCartId(Integer cartId);
 
-    int updateByPrimaryKeySelective(UserCart record);
+    List<UserCart> selectAllByUserId(Integer userId);
 
-    int updateByPrimaryKey(UserCart record);
+    int updateByCartIdSelective(UserCart record);
+
+    int updateByCartId(UserCart record);
 }

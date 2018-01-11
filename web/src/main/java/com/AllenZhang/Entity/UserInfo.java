@@ -9,16 +9,19 @@ public class UserInfo {
 
     private Integer balance;
 
-    
+    public UserInfo() {
+
+    }
+
     public UserInfo(Integer userId, String userNickName) {
-		super();
-	
-		this.userId = userId;
-		this.userNickName = userNickName;
+        super();
 
-	}
+        this.userId = userId;
+        this.userNickName = userNickName;
 
-	public Integer getId() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
