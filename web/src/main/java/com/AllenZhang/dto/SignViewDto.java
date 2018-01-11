@@ -1,7 +1,7 @@
 package com.AllenZhang.dto;
 
 public class SignViewDto {
-	private int userId;
+	private Integer userId;
 	private String account;
 	private String password;
 	private String userNickName;
@@ -12,7 +12,7 @@ public class SignViewDto {
 
 
 
-	public SignViewDto(int userId, String account, String password, String userNickName) {
+	public SignViewDto(Integer userId, String account, String password, String userNickName) {
 		super();
 		this.userId = userId;
 		this.account = account;
@@ -22,11 +22,11 @@ public class SignViewDto {
 
 
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
