@@ -9,7 +9,16 @@ public class UserInfo {
 
     private Integer balance;
 
-    public Integer getId() {
+    
+    public UserInfo(Integer userId, String userNickName) {
+		super();
+	
+		this.userId = userId;
+		this.userNickName = userNickName;
+
+	}
+
+	public Integer getId() {
         return id;
     }
 

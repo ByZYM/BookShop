@@ -10,6 +10,13 @@ public class UserAccount {
     private String password;
 
     private Date loginTime;
+    
+    public UserAccount(String account, String password) {
+		super();
+		this.account = account;
+		this.password = password;
+	}
+
 
     public Integer getUserId() {
         return userId;
