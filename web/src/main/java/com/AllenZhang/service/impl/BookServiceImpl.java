@@ -27,7 +27,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookInfo> getAllBooks() {
         List<BookInfo> returnData = bookInfoMapper.selectAll();
-
         return returnData;
     }
 }
