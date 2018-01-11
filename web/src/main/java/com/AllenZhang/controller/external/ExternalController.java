@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 
 /**
  * 外部接口控制器(可以绕过登录过滤器)
@@ -28,13 +30,15 @@ public class ExternalController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public MetaDto loginValidate(LoginViewDto loginViewDto) {
+    public MetaDto loginValidate(LoginViewDto loginViewDto, HttpSession session) {
 
 
         UserAccount u = userService.checkUserLogin(loginViewDto.getAccount(),loginViewDto.getPassword());
         MetaDto metaDto = new MetaDto();
 
         if (u != null) {
+            /* Session持久化 */
+            session.setAttribute("userAccount",u);
             metaDto.setMessage("登录成功");
             metaDto.setStatus(Status.SUCCESS);
         } else {
