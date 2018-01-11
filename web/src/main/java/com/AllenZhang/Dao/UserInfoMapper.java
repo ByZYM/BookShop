@@ -1,6 +1,6 @@
-package com.AllenZhang.Dao;
+package com.AllenZhang.dao;
 
-import com.AllenZhang.Entity.UserInfo;
+import com.AllenZhang.entity.UserInfo;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);

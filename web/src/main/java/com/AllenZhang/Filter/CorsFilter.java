@@ -1,7 +1,8 @@
-package com.AllenZhang.Filter;
+package com.AllenZhang.filter;
 
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -25,34 +26,27 @@ public class CorsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
-        if (null!=allowOrigin) {
+        HttpServletRequest request = (HttpServletRequest) req;
+        if (null != allowOrigin) {
             response.setHeader("Access-Control-Allow-Origin", allowOrigin);
+            /* 处理全部站点 */
+            if (allowOrigin.equalsIgnoreCase("*")) {
+                response.setHeader("Access-Control-Allow-Origin", "*");
+                String currentOrigin = request.getHeader("Origin");
+                response.setHeader("Access-Control-Allow-Origin", currentOrigin);
+            }
+        }
 
-//            /* 处理全部站点 */
-//            if (allowOrigin.equalsIgnoreCase("*")) {
-//                response.setHeader("Access-Control-Allow-Origin", "*");
-//            }
-//            /* 处理指定站点 */
-//            else {
-//                List<String> allowOriginList = Arrays.asList(allowOrigin.split(","));
-//                System.out.println(allowOriginList);
-//                if (CollectionUtil.isNotEmpty(allowOriginList)) {
-//                    String currentOrigin = request.getHeader("Origin");
-//                    if (allowOriginList.contains(currentOrigin)) {
-//                        response.setHeader("Access-Control-Allow-Origin", allowOrigin);
-//                    }
-//                }
-//            }
-        } if (null!=allowMethods) {
+        if (null != allowMethods) {
             response.setHeader("Access-Control-Allow-Methods", allowMethods);
         }
-        if (null!=allowCredentials) {
+        if (null != allowCredentials) {
             response.setHeader("Access-Control-Allow-Credentials", allowCredentials);
         }
-        if (null!=allowHeaders) {
+        if (null != allowHeaders) {
             response.setHeader("Access-Control-Allow-Headers", allowHeaders);
         }
-        if (null!=exposeHeaders) {
+        if (null != exposeHeaders) {
             response.setHeader("Access-Control-Expose-Headers", exposeHeaders);
         }
         chain.doFilter(req, res);

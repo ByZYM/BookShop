@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2017 by AllenZhang
+ * Copyright (c) 2018 by AllenZhang
  */
 
-package com.AllenZhang.Controller;
+package com.AllenZhang.controller.api;
 
-import com.AllenZhang.Dto.MetaDto;
-import com.AllenZhang.Entity.UserAccount;
+import com.AllenZhang.dto.MetaDto;
+import com.AllenZhang.entity.UserAccount;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;

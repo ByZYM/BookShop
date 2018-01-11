@@ -2,9 +2,9 @@
  * Copyright (c) 2018 by AllenZhang
  */
 
-package com.AllenZhang.Service;
+package com.AllenZhang.service;
 
-import com.AllenZhang.Entity.UserCart;
+import com.AllenZhang.entity.UserCart;
 
 import java.util.List;
 

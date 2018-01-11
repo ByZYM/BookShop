@@ -1,4 +1,4 @@
-package com.AllenZhang.Entity;
+package com.AllenZhang.entity;
 
 import java.util.Date;
 

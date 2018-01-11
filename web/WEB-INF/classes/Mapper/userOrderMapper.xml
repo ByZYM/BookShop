@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.Dao.userOrderMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.userOrder">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.dao.userOrderMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.userOrder">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="cart_id" jdbcType="INTEGER" property="cartId" />
     <result column="status" jdbcType="CHAR" property="status" />
   </resultMap>
-  <insert id="insert" parameterType="com.AllenZhang.Entity.userOrder">
+  <insert id="insert" parameterType="com.AllenZhang.entity.userOrder">
     insert into user_order (id, order_id, cart_id, 
       status)
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, 
       #{status,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.userOrder">
+  <insert id="insertSelective" parameterType="com.AllenZhang.entity.userOrder">
     insert into user_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

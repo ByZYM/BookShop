@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.Dao.BookInfoMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.BookInfo">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.dao.BookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.BookInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="isbn" jdbcType="VARCHAR" property="isbn" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -19,11 +19,14 @@
     from book_info
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectAll" resultType="com.AllenZhang.entity.BookInfo">
+      SELECT * FROM book_info
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from book_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.AllenZhang.Entity.BookInfo">
+  <insert id="insert" parameterType="com.AllenZhang.entity.BookInfo">
     insert into book_info (id, isbn, name, 
       date, publish, author, 
       info)
@@ -31,7 +34,7 @@
       #{date,jdbcType=DATE}, #{publish,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{info,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.BookInfo">
+  <insert id="insertSelective" parameterType="com.AllenZhang.entity.BookInfo">
     insert into book_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +83,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.Entity.BookInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.BookInfo">
     update book_info
     <set>
       <if test="isbn != null">
@@ -104,7 +107,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.Entity.BookInfo">
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.BookInfo">
     update book_info
     set isbn = #{isbn,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

@@ -1,4 +1,4 @@
-package com.AllenZhang.Entity;
+package com.AllenZhang.entity;
 
 public class UserCart {
     private Integer cartId;

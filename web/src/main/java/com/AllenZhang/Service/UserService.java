@@ -2,10 +2,10 @@
  * Copyright (c) 2018 by AllenZhang
  */
 
-package com.AllenZhang.Service;
+package com.AllenZhang.service;
 
-import com.AllenZhang.Entity.UserAccount;
-import com.AllenZhang.Entity.UserInfo;
+import com.AllenZhang.entity.UserAccount;
+import com.AllenZhang.entity.UserInfo;
 
 /**
  * 包含UserAccount与UserInfo业务逻辑

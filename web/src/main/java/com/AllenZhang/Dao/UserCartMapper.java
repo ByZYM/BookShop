@@ -1,6 +1,6 @@
-package com.AllenZhang.Dao;
+package com.AllenZhang.dao;
 
-import com.AllenZhang.Entity.UserCart;
+import com.AllenZhang.entity.UserCart;
 
 public interface UserCartMapper {
     int deleteByPrimaryKey(Integer cartId);

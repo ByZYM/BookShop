@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.Dao.GoodsInfoMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.GoodsInfo">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.dao.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.GoodsInfo">
     <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="book_id" jdbcType="INTEGER" property="bookId" />
     <result column="money" jdbcType="DECIMAL" property="money" />
@@ -20,13 +20,13 @@
     delete from goods_info
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.AllenZhang.Entity.GoodsInfo">
+  <insert id="insert" parameterType="com.AllenZhang.entity.GoodsInfo">
     insert into goods_info (goods_id, book_id, money, 
       num)
     values (#{goodsId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
       #{num,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.GoodsInfo">
+  <insert id="insertSelective" parameterType="com.AllenZhang.entity.GoodsInfo">
     insert into goods_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="goodsId != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.Entity.GoodsInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.GoodsInfo">
     update goods_info
     <set>
       <if test="bookId != null">
@@ -72,7 +72,7 @@
     </set>
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.Entity.GoodsInfo">
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.GoodsInfo">
     update goods_info
     set book_id = #{bookId,jdbcType=INTEGER},
       money = #{money,jdbcType=DECIMAL},

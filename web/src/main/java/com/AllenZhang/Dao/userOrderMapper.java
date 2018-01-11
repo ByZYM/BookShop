@@ -1,6 +1,6 @@
-package com.AllenZhang.Dao;
+package com.AllenZhang.dao;
 
-import com.AllenZhang.Entity.userOrder;
+import com.AllenZhang.entity.userOrder;
 
 public interface userOrderMapper {
     int insert(userOrder record);

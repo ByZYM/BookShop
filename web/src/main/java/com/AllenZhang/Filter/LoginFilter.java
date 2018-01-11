@@ -2,8 +2,9 @@
  * Copyright (c) 2017 by AllenZhang
  */
 
-package com.AllenZhang.Filter;
+package com.AllenZhang.filter;
 
+import com.AllenZhang.entity.UserAccount;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -22,7 +23,6 @@ public class LoginFilter implements Filter {
 
     private static final Log logger = LogFactory.getLog(LoginFilter.class);
 
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -38,14 +38,13 @@ public class LoginFilter implements Filter {
         if (!httpRequest.getMethod().equalsIgnoreCase("options")) {
             HttpSession session = httpRequest.getSession();
 
-            String account = (String) session.getAttribute("account");
+            UserAccount userAccount = (UserAccount) session.getAttribute("userAccount");
 
             //ajax session 过期处理
-            if (account == null) {
+            if (userAccount == null) {
                 logger.info("session过期处理");
-
-                logger.info("请求重定向到/error/login");
-                httpResponse.sendRedirect("/error/login");
+                logger.info("请求重定向到/error/loginValidate");
+                httpResponse.sendRedirect("/error/loginValidate");
                 return;
 
             }

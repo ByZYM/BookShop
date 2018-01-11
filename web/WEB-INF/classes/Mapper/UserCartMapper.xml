@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.Dao.UserCartMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.UserCart">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.dao.UserCartMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.UserCart">
     <id column="cart_id" jdbcType="INTEGER" property="cartId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
@@ -21,13 +21,13 @@
     delete from user_cart
     where cart_id = #{cartId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.AllenZhang.Entity.UserCart">
+  <insert id="insert" parameterType="com.AllenZhang.entity.UserCart">
     insert into user_cart (cart_id, user_id, goods_id, 
       num, isCommit)
     values (#{cartId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
       #{num,jdbcType=INTEGER}, #{iscommit,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.UserCart">
+  <insert id="insertSelective" parameterType="com.AllenZhang.entity.UserCart">
     insert into user_cart
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cartId != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.Entity.UserCart">
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.UserCart">
     update user_cart
     <set>
       <if test="userId != null">
@@ -82,7 +82,7 @@
     </set>
     where cart_id = #{cartId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.Entity.UserCart">
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.UserCart">
     update user_cart
     set user_id = #{userId,jdbcType=INTEGER},
       goods_id = #{goodsId,jdbcType=INTEGER},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.Dao.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.Entity.UserInfo">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.AllenZhang.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.UserInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
@@ -20,13 +20,13 @@
     delete from user_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.AllenZhang.Entity.UserInfo">
+  <insert id="insert" parameterType="com.AllenZhang.entity.UserInfo">
     insert into user_info (id, user_id, user_nick_name, 
       balance)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userNickName,jdbcType=VARCHAR}, 
       #{balance,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.Entity.UserInfo">
+  <insert id="insertSelective" parameterType="com.AllenZhang.entity.UserInfo">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.Entity.UserInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.UserInfo">
     update user_info
     <set>
       <if test="userId != null">
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.Entity.UserInfo">
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.UserInfo">
     update user_info
     set user_id = #{userId,jdbcType=INTEGER},
       user_nick_name = #{userNickName,jdbcType=VARCHAR},
