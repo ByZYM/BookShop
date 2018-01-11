@@ -4,10 +4,10 @@
 
 package com.AllenZhang.controller.external;
 
+import com.AllenZhang.dto.LoginViewDto;
 import com.AllenZhang.dto.MetaDto;
 import com.AllenZhang.dto.SignViewDto;
 import com.AllenZhang.entity.UserAccount;
-import com.AllenZhang.entity.UserInfo;
 import com.AllenZhang.service.UserService;
 import com.AllenZhang.utils.Status;
 
@@ -28,9 +28,10 @@ public class ExternalController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public MetaDto loginValidate(UserAccount userAccount) {
+    public MetaDto loginValidate(LoginViewDto loginViewDto) {
 
-        UserAccount u = userService.checkUserLogin(userAccount);
+
+        UserAccount u = userService.checkUserLogin(loginViewDto.getAccount(),loginViewDto.getPassword());
         MetaDto metaDto = new MetaDto();
 
         if (u != null) {

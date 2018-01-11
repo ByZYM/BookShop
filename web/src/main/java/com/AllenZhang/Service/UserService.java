@@ -15,10 +15,11 @@ public interface UserService {
     /**
      * 验证用户登录
      *
-     * @param userAccount 用户账号
+     * @param account 用户账号
+     * @param password 用户密码
      * @return 验证数据库是否匹配该用户账号与密码 null表示不匹配 非null返回数据库中的值
      */
-    UserAccount checkUserLogin(UserAccount userAccount);
+    UserAccount checkUserLogin(String account,String password);
 
     /**
      * 新建用户

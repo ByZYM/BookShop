@@ -25,17 +25,17 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public UserAccount checkUserLogin(UserAccount userAccount) {
+    public UserAccount checkUserLogin(String account,String password) {
 
         /* 根据账号查询到UserAccount */
-        UserAccount u = userAccountMapper.selectByUserAccount(userAccount.getAccount());
+        UserAccount u = userAccountMapper.selectByUserAccount(account);
 
         /* 账号不存在 */
         if(u==null){
             return null;
         }
         /* 密码不匹配 */
-        else if(!u.getPassword().equals(userAccount.getPassword())){
+        else if(!u.getPassword().equals(password)){
             return null;
         }
 

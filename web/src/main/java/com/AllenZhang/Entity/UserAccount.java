@@ -12,7 +12,7 @@ public class UserAccount {
     private Date loginTime;
 
     public UserAccount(){
-        
+
     }
 
     public UserAccount(String account, String password) {
