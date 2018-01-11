@@ -16,12 +16,7 @@
     from user_account
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
-    <select id="selectByUserAccount" resultType="com.AllenZhang.entity.UserAccount">
-      SELECT *
-      FROM user_account
-      WHERE account = #{account};
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_account
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>

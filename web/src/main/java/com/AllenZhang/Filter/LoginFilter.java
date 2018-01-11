@@ -47,6 +47,7 @@ public class LoginFilter implements Filter {
                 /* 重定向到errorController返回消息 */
                 httpResponse.sendRedirect("/error/loginTimeOut");
                 return;
+
             }
         }
 

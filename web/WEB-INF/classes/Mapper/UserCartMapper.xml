@@ -11,16 +11,11 @@
   <sql id="Base_Column_List">
     cart_id, user_id, goods_id, num, isCommit
   </sql>
-  <select id="selectByCartId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_cart
     where cart_id = #{cartId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAllByUserId" resultType="com.AllenZhang.entity.UserCart">
-      SELECT *
-      FROM user_cart
-      WHERE user_id = #{userId}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_cart
@@ -69,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByCartIdSelective" parameterType="com.AllenZhang.entity.UserCart">
+  <update id="updateByPrimaryKeySelective" parameterType="com.AllenZhang.entity.UserCart">
     update user_cart
     <set>
       <if test="userId != null">
@@ -87,7 +82,7 @@
     </set>
     where cart_id = #{cartId,jdbcType=INTEGER}
   </update>
-  <update id="updateByCartId" parameterType="com.AllenZhang.entity.UserCart">
+  <update id="updateByPrimaryKey" parameterType="com.AllenZhang.entity.UserCart">
     update user_cart
     set user_id = #{userId,jdbcType=INTEGER},
       goods_id = #{goodsId,jdbcType=INTEGER},

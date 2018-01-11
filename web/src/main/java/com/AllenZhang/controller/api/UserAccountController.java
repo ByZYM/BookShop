@@ -1,5 +1,8 @@
 package com.AllenZhang.controller.api;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +57,7 @@ public class UserAccountController {
 	 * @return
 	 */
 	@RequestMapping(value="/update/{userId}")
-	public @ResponseBody MetaDto updateUserAccount(@PathVariable("userId") Integer userId,@RequestBody UserAccount userAccount){
+	public @ResponseBody MetaDto updateuserAccount(@PathVariable("userId") Integer userId,@RequestBody UserAccount userAccount){
 		MetaDto metaDto=new MetaDto();
 		UserAccount returnDate=userService.getUserAccountByUserId(userId);
 		if(returnDate!=null){

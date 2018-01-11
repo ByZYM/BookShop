@@ -22,7 +22,7 @@ import com.AllenZhang.utils.Status;
  * @author qrain
  *
  */
-//@Controller
+@Controller
 @RequestMapping(value="/api/cart")
 public class CartController {
 	
@@ -58,7 +58,7 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/get/{userId}/delete/{cartId}")
-	public @ResponseBody MetaDto deleteCartById(@PathVariable("cartId") Integer cartId, @PathVariable("userId") String userId){
+	public @ResponseBody MetaDto deleteCartById(@PathVariable("cartId") Integer cartId){
 		MetaDto metaDto=new MetaDto();
 		boolean flag=cartService.deleteUserCartByCartId(cartId);
 		if(flag){
@@ -77,10 +77,9 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/get/{userId}/update/{cartId}")
-	public @ResponseBody MetaDto updateCartById(@PathVariable Integer cartId, @RequestBody CartViewDto cartViewDto, @PathVariable("userId") String userId){
+	public @ResponseBody MetaDto updateCartById(@PathVariable Integer cartId,@RequestBody CartViewDto cartViewDto){
 		MetaDto metaDto=new MetaDto();
 		//通过cartid获得userCart修改num
-//        cartService.updateUserCartNum();
 		return null;
 		
 	}
@@ -91,8 +90,7 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/get/{userId}/add")
-	public @ResponseBody MetaDto updateCartById(@RequestBody UserCart userCart, @PathVariable("userId") String userId){
-
+	public @ResponseBody MetaDto updateCartById(@RequestBody UserCart userCart){
 		return null;
 		
 	}
