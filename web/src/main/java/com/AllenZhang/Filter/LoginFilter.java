@@ -43,8 +43,9 @@ public class LoginFilter implements Filter {
             //ajax session 过期处理
             if (userAccount == null) {
                 logger.info("session过期处理");
-                logger.info("请求重定向到/error/loginValidate");
-                httpResponse.sendRedirect("/error/loginValidate");
+                logger.info("请求重定向到/error/loginTimeOut");
+                /* 重定向到errorController返回消息 */
+                httpResponse.sendRedirect("/error/loginTimeOut");
                 return;
 
             }
