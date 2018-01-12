@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.AllenZhang.dao.userOrderMapper">
-  <resultMap id="BaseResultMap" type="com.AllenZhang.entity.userOrder">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_id" jdbcType="INTEGER" property="orderId" />
-    <result column="cart_id" jdbcType="INTEGER" property="cartId" />
-    <result column="status" jdbcType="CHAR" property="status" />
-  </resultMap>
-  <insert id="insert" parameterType="com.AllenZhang.entity.userOrder">
-    insert into user_order (id, order_id, cart_id, 
-      status)
-    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, 
-      #{status,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.AllenZhang.entity.userOrder">
-    insert into user_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="orderId != null">
-        order_id,
-      </if>
-      <if test="cartId != null">
-        cart_id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null">
-        #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="cartId != null">
-        #{cartId,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="com.AllenZhang.dao.UserOrderMapper">
+    <resultMap id="BaseResultMap" type="com.AllenZhang.entity.UserOrder">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="cart_id" jdbcType="INTEGER" property="userCart.cartId"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.AllenZhang.entity.UserOrder">
+        INSERT INTO user_order (id, order_id, cart_id,
+                                status)
+        VALUES (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{userCart.cartId,jdbcType=INTEGER},
+                #{status,jdbcType=CHAR})
+    </insert>
+
+    <select id="getMaxOrderId" resultType="java.lang.Integer">
+        SELECT max(order_id)
+        FROM user_order;
+    </select>
+    <select id="selectAllByUserId" resultType="com.AllenZhang.entity.UserOrder">
+        SELECT
+            a.id         "id",
+            a.order_id   "orderId",
+            c.cart_id    "userCart.cartId",
+            c.user_id    "userCart.userId",
+            c.goods_id   "userCart.goodsId",
+            c.num        "userCart.num",
+            c.isCommit   "userCart.isCommit",
+            b.user_id    "userAccount.userId",
+            b.account    "userAccount.account",
+            b.password   "userAccount.password",
+            b.login_time "userAccount.loginTime",
+            a.status     "status"
+        FROM user_order a INNER JOIN user_cart c ON a.cart_id = c.cart_id
+            INNER JOIN user_account b ON c.user_id = b.user_id
+        WHERE c.user_id = #{userId};
+    </select>
 </mapper>

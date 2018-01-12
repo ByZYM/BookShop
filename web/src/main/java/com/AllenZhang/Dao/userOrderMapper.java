@@ -1,9 +1,13 @@
 package com.AllenZhang.dao;
 
-import com.AllenZhang.entity.userOrder;
+import com.AllenZhang.entity.UserOrder;
 
-public interface userOrderMapper {
-    int insert(userOrder record);
+import java.util.List;
 
-    int insertSelective(userOrder record);
+public interface UserOrderMapper {
+    int insert(UserOrder record);
+
+    Integer getMaxOrderId();
+
+    List<UserOrder> selectAllByUserId(Integer userId);
 }

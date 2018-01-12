@@ -55,6 +55,6 @@ public interface CartService {
      * @param userCarts 要提交的订单系列
      * @return
      */
-    boolean submitUserCarts(List<UserCart> userCarts);
+    void submitUserCarts(List<UserCart> userCarts);
 
 }

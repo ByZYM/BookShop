@@ -1,13 +1,23 @@
 package com.AllenZhang.entity;
 
-public class userOrder {
+public class UserOrder {
     private Integer id;
 
     private Integer orderId;
 
-    private Integer cartId;
+    private UserCart userCart;
+
+    private UserAccount userAccount;
 
     private String status;
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 
     public Integer getId() {
         return id;
@@ -25,12 +35,12 @@ public class userOrder {
         this.orderId = orderId;
     }
 
-    public Integer getCartId() {
-        return cartId;
+    public UserCart getUserCart() {
+        return userCart;
     }
 
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
+    public void setUserCart(UserCart userCart) {
+        this.userCart = userCart;
     }
 
     public String getStatus() {

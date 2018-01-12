@@ -18,4 +18,5 @@ public interface UserCartMapper {
     int updateByCartIdSelective(UserCart record);
 
     int updateByCartId(UserCart record);
+
 }

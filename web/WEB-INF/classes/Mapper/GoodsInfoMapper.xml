@@ -21,16 +21,31 @@
             a.goods_id "goodId",
             i.id       "book.id",
             i.author   "book.author",
-            i.isbn   "book.isbn",
-            i.name "book.name",
-            i.date "book.date",
-            i.info "book.info",
-            i.publish "book.publish",
+            i.isbn     "book.isbn",
+            i.name     "book.name",
+            i.date     "book.date",
+            i.info     "book.info",
+            i.publish  "book.publish",
             a.money    "money",
             a.num      "num"
         FROM goods_info a
             INNER JOIN book_info i ON a.book_id = i.id;
-
+    </select>
+    <select id="selectByIdWithAllData" resultType="com.AllenZhang.entity.GoodsInfo">
+        SELECT
+            a.goods_id "goodId",
+            i.id       "book.id",
+            i.author   "book.author",
+            i.isbn     "book.isbn",
+            i.name     "book.name",
+            i.date     "book.date",
+            i.info     "book.info",
+            i.publish  "book.publish",
+            a.money    "money",
+            a.num      "num"
+        FROM goods_info a
+            INNER JOIN book_info i ON a.book_id = i.id
+        WHERE a.book_id = #{bookId}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         DELETE FROM goods_info

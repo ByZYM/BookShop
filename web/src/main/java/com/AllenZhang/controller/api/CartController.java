@@ -22,7 +22,7 @@ import com.AllenZhang.utils.Status;
  * @author qrain
  *
  */
-//@Controller
+@Controller
 @RequestMapping(value="/api/cart")
 public class CartController {
 	
@@ -99,14 +99,16 @@ public class CartController {
 	@RequestMapping(value="/get/{userId}/add")
 	public @ResponseBody MetaDto addCarts(@RequestBody List<UserCart> userCarts){
 		MetaDto metaDto=new MetaDto();
-		boolean flag=cartService.submitUserCarts(userCarts);
-		if(flag){
-			metaDto.setMessage("提交成功");
-			metaDto.setStatus(Status.SUCCESS);
-		}else{
-			metaDto.setMessage("提交失败");
-			metaDto.setStatus(Status.FAILED);
-		}
+		try {
+            cartService.submitUserCarts(userCarts);
+
+            metaDto.setMessage("提交成功");
+            metaDto.setStatus(Status.SUCCESS);
+        }catch (RuntimeException e){
+            metaDto.setMessage("提交失败");
+            metaDto.setStatus(Status.FAILED);
+        }
+
 		return metaDto;
 		
 	}

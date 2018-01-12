@@ -43,6 +43,7 @@ public class ExternalController {
             session.setAttribute("userAccount",u);
             metaDto.setMessage("登录成功");
             metaDto.setStatus(Status.SUCCESS);
+            metaDto.setData(u);
         } else {
             metaDto.setMessage("账号或密码错误");
             metaDto.setStatus(Status.FAILED);

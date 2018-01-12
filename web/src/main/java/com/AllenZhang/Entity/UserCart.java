@@ -9,7 +9,7 @@ public class UserCart {
 
     private Integer num;
 
-    private String iscommit;
+    private String isCommit;
 
     public Integer getCartId() {
         return cartId;
@@ -43,11 +43,11 @@ public class UserCart {
         this.num = num;
     }
 
-    public String getIscommit() {
-        return iscommit;
+    public String getIsCommit() {
+        return isCommit;
     }
 
-    public void setIscommit(String iscommit) {
-        this.iscommit = iscommit == null ? null : iscommit.trim();
+    public void setIsCommit(String isCommit) {
+        this.isCommit = isCommit == null ? null : isCommit.trim();
     }
 }

@@ -19,7 +19,7 @@ import com.AllenZhang.utils.Status;
  *
  */
 @Controller
-@RequestMapping(value="/userInfo")
+@RequestMapping(value="/api/userInfo")
 public class UserInfoController {
 	@Autowired
 	private UserService userService;
