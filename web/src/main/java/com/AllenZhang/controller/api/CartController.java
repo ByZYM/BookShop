@@ -77,11 +77,17 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/get/{userId}/update/{cartId}")
-	public @ResponseBody MetaDto updateCartById(@PathVariable Integer cartId, @RequestBody CartViewDto cartViewDto, @PathVariable("userId") String userId){
+	public @ResponseBody MetaDto updateCartById(@RequestBody UserCart userCart ){
 		MetaDto metaDto=new MetaDto();
-		//通过cartid获得userCart修改num
-//        cartService.updateUserCartNum();
-		return null;
+		boolean flag=cartService.updateUserCartNum(userCart);
+		if(flag){
+			metaDto.setMessage("修改成功");
+			metaDto.setStatus(Status.SUCCESS);
+		}else{
+			metaDto.setMessage("修改失败");
+			metaDto.setStatus(Status.FAILED);
+		}
+		return metaDto;
 		
 	}
 	
@@ -91,9 +97,17 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/get/{userId}/add")
-	public @ResponseBody MetaDto updateCartById(@RequestBody UserCart userCart, @PathVariable("userId") String userId){
-
-		return null;
+	public @ResponseBody MetaDto addCarts(@RequestBody List<UserCart> userCarts){
+		MetaDto metaDto=new MetaDto();
+		boolean flag=cartService.submitUserCarts(userCarts);
+		if(flag){
+			metaDto.setMessage("提交成功");
+			metaDto.setStatus(Status.SUCCESS);
+		}else{
+			metaDto.setMessage("提交失败");
+			metaDto.setStatus(Status.FAILED);
+		}
+		return metaDto;
 		
 	}
 }
